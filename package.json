@@ -1,0 +1,24 @@
+{
+  "name": "heroku",
+  "version": "1.0.0",
+  "description": "",
+  "main": "fetch.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikiol60/Heroku.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mikiol60/Heroku/issues"
+  },
+  "homepage": "https://github.com/mikiol60/Heroku#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "mongoose": "^5.0.15"
+  }
+}
