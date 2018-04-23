@@ -95,12 +95,10 @@ var requestLoop = () => {
                 try {
                   console.log(body['items'].length);
                   if (allData.length > 8) {
-
                     addWalmartProducts(categoryId, allData);
                     allData = []
                     console.log("ADDED 500 Datas to the DB")
-
-                    http.get('/', (res)=>{
+                    http.get('https://mighty-caverns-28086.herokuapp.com/refresh', (res)=>{
                       // console.log(res.body);
                       console.log('waked him up');
                     });
