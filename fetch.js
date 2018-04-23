@@ -29,8 +29,13 @@ console.log(keys, "/n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 router.get('/refresh', (req, res) => {
   console.log("told by mike to wake up");
   // requestLoop()
+  res.send('wooooo');
 })
 
+
+router.get('/start', (req, res)=>{
+  requestLoop();
+})
 var requestLoop = () => {
   var allData = [];
 
