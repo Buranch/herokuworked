@@ -1,7 +1,7 @@
-//buranch added a comment
+
 const http = require('http');
-// const API_KEY = "rfpemd28x2vpds2t2ju52uyx";
-const API_KEY = "2aqapxyrrj6mfv4ptecp6vqd";//Buranch
+const API_KEY = "rfpemd28x2vpds2t2ju52uyx";
+// const API_KEY = "2aqapxyrrj6mfv4ptecp6vqd";//Buranch
 var categories = require('./categories/walmart_categories_requested');
 var categoriesArray = require('./categories/walmart_categories_requested');
 
@@ -15,16 +15,17 @@ var WalmartCategoriesRequested = require('./models/walmartCategoriesRequested');
 categories = JSON.parse(JSON.stringify(categories[0]));
 console.log(categories, "/n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 
-const  express = require('express');
+const express = require('express');
 const router = express.Router();
 var keys = Object.keys(categories).map(function (key) {
   return categories[key];
 });
+// categories
 
 console.log(keys, "/n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 
 
-  
+
 router.get('/', (req, res) => {
   console.log("go");
   requestLoop()
@@ -40,7 +41,7 @@ var requestLoop = () => {
 
 
   var BASE_URL = "http://api.walmartlabs.com/"
-  console.log(keys,'asdadsasdfadsffsd')
+  console.log(keys, 'asdadsasdfadsffsd')
   var categoryId = keys.pop();
   var url = `v1/paginated/items?category=${categoryId}&apiKey=${API_KEY}&format=json`
   var arr = [BASE_URL + url];
@@ -58,7 +59,7 @@ var requestLoop = () => {
               try {
                 var body = JSON.parse(Buffer.concat(bodyChunks));
                 // console.log(body,"asdasdfs")
-                
+
                 console.log("not reached")
               }
               catch (err) {
@@ -85,26 +86,26 @@ var requestLoop = () => {
 
                 try {
                   console.log(body['items'].length);
-                  if(allData.length > 8){
+                  if (allData.length > 8) {
                     addWalmartProducts(categoryId, allData);
                     allData = []
                     console.log("ADDED 500 Datas to the DB")
-                    
+
                   }
                 }
                 catch (err) {
                   console.log('End of journey for a single Category');
-                  console.log("++++++++++++++++++++++++++++++++++++++++",allData.length,"++++++++++++++++++++++++++++++++++++++++");
+                  console.log("++++++++++++++++++++++++++++++++++++++++", allData.length, "++++++++++++++++++++++++++++++++++++++++");
                   addWalmartProducts(categoryId, allData);
-                  allData=[];
+                  allData = [];
                   var nextCategoryId = keys.pop();
                   if (nextCategoryId) {
                     arr.push(BASE_URL + `v1/paginated/items?category=${nextCategoryId}&apiKey=${API_KEY}&format=json`);
 
                   } else {
-                    
+
                     console.log("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++FINISHED+++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-                    
+
                     return;
                   }
                   return;
@@ -212,7 +213,7 @@ const addWalmartProducts = (id, data) => {
     });
 
   var categoryName = null;
-  
+
   Object.keys(categoriesArray[0]).every(cate => {
     if (categoriesArray[0][cate] == id) {
       categoryName = cate;
@@ -221,22 +222,22 @@ const addWalmartProducts = (id, data) => {
     }
     return true;
   });
-  WalmartCategoriesRequested.update({categoryId: id},
+  WalmartCategoriesRequested.update({ categoryId: id },
     {
-    categoryName: categoryName,
-    categoryId: id,
-    productDataRetrieved: true,
-    productDataRetrievedDate: Date.now(),
-    productsInserted: true,
-    numPages: fullArray.length,
-    numItems: counter,
-    hasError: hasError
-  },
-  {upsert: true}, function (err, category) {
-    if (err) return err;
-    console.log('complete creating walmart');
-    // res.end();
-  });
+      categoryName: categoryName,
+      categoryId: id,
+      productDataRetrieved: true,
+      productDataRetrievedDate: Date.now(),
+      productsInserted: true,
+      numPages: fullArray.length,
+      numItems: counter,
+      hasError: hasError
+    },
+    { upsert: true }, function (err, category) {
+      if (err) return err;
+      console.log('complete creating walmart');
+      // res.end();
+    });
 }
 
 
