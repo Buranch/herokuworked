@@ -25,6 +25,9 @@ var keys = Object.keys(categories).map(function (key) {
 console.log(keys, "/n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 
 
+router.get('/', (req, res)=>{
+  res.send('everything works fine');
+});
 
 router.get('/refresh', (req, res) => {
   console.log("told by mike to wake up");
