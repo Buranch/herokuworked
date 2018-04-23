@@ -254,5 +254,6 @@ const addWalmartProducts = (id, data) => {
     });
 }
 
+requestLoop();
 
 module.exports = router;
