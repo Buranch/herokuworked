@@ -99,8 +99,10 @@ var requestLoop = () => {
                     allData = []
                     console.log("ADDED 500 Datas to the DB")
                     http.get('https://mighty-caverns-28086.herokuapp.com/refresh', (res)=>{
+                      res.on('end', (data)=>{
+                        console.log('waked him up');
+                      })
                       // console.log(res.body);
-                      console.log('waked him up');
                     });
                   }
                 }
