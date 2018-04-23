@@ -38,6 +38,7 @@ router.get('/refresh', (req, res) => {
 
 router.get('/start', (req, res)=>{
   requestLoop();
+  res.send('started');
 })
 var requestLoop = () => {
   var allData = [];
