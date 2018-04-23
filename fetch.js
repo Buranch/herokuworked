@@ -26,9 +26,9 @@ console.log(keys, "/n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
 
-router.get('/', (req, res) => {
-  console.log("go");
-  requestLoop()
+router.get('/refresh', (req, res) => {
+  console.log("told by mike to wake up");
+  // requestLoop()
 })
 
 var requestLoop = () => {
@@ -87,10 +87,15 @@ var requestLoop = () => {
                 try {
                   console.log(body['items'].length);
                   if (allData.length > 8) {
+
                     addWalmartProducts(categoryId, allData);
                     allData = []
                     console.log("ADDED 500 Datas to the DB")
 
+                    http.get('/', (res)=>{
+                      // console.log(res.body);
+                      console.log('waked him up');
+                    });
                   }
                 }
                 catch (err) {
