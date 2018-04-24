@@ -1,11 +1,11 @@
 
-const http = require('http');
+var request = require('request');
 
 setInterval(()=>{
-    http.get('https://mighty-caverns-28086.herokuapp.com/refresh', (res)=>{
-        res.on('end', ()=>{
-            console.log('waked him up');
-        })
-    })
+    request('https://mighty-caverns-28086.herokuapp.com/refresh', function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            console.log(body);
+        }
+    });
 
 },1000*60);
