@@ -1,6 +1,6 @@
 const http = require('http');
-// const API_KEY = "rfpemd28x2vpds2t2ju52uyx";
-const API_KEY = "2aqapxyrrj6mfv4ptecp6vqd"; //Buranch
+const API_KEY = "rfpemd28x2vpds2t2ju52uyx";
+// const API_KEY = "2aqapxyrrj6mfv4ptecp6vqd"; //Buranch
 var categories = require('./categories/walmart_categories_requested');
 var categoriesArray = require('./categories/walmart_categories_requested');
 
