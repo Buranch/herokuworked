@@ -113,7 +113,7 @@ var requestLoop = () => {
                     console.log('proved')
                   } else {
                     //if there is no next CategoryId stop 
-                    console.log("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++FINISHED+++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+                    console.log("++++++FINISHED+++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
                     return;
                   }
                   return;
@@ -171,8 +171,8 @@ const addWalmartProducts = (id, data, createWalmertRequested) => {
           dateAdded: Date.now(),
           hasError: false
         };
-        console.log("id ", product.itemId);
-        console.log('addingOne ', product.upc);
+        // console.log("id ", product.itemId);
+        // console.log('addingOne ', product.upc);
         productArray.push(productInfo);
 
       } else {
@@ -222,7 +222,7 @@ const addWalmartProducts = (id, data, createWalmertRequested) => {
   Object.keys(categoriesArray[0]).every(cate => {
     if (categoriesArray[0][cate] == id) {
       categoryName = cate;
-      console.log('got the cateogry ', cate);
+      // console.log('got the cateogry ', cate);
       return false;
     }
     return true;
