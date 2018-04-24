@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 let schema = new Schema({
 
-    upc: {type: String, required: true, unique: true},
+    upc: {type: String, required: true},
     ean: {type: String},
     item_ids: [ // this is ids from other sources besides us
         {
