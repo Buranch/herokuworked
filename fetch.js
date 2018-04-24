@@ -15,7 +15,7 @@ categories = JSON.parse(JSON.stringify(categories[0]));
 console.log(categories, "/n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 
 var newURL = `/v1/paginated/items?category=976759_1071964_976779&maxId=996770109&apiKey=${API_KEY}&format=json`
-var resume = true;
+var resume = false;
 
 const express = require('express');
 const router = express.Router();
