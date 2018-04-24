@@ -8,8 +8,6 @@ var Product = require('./models/product');
 var ProductsMissingUPC = require('./models/missingUPC');
 var mongoose = require('mongoose').Schema;
 var WalmartCategoriesRequested = require('./models/walmartCategoriesRequested');
-
-
 console.log('fetch.js');
 categories = JSON.parse(JSON.stringify(categories[0]));
 console.log(categories, "/n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
@@ -81,7 +79,11 @@ var requestLoop = () => {
                     arr.push(nextPage);
                     condition = false;
                     console.log("Ended for a DAY")
-
+                    http.get('https://mighty-caverns-28086.herokuapp.com/refresh', function (res) {
+                        res.on('end', ()=>{
+                          console.log('woke myself up');
+                        })
+                    });
                   }
 
                 }
@@ -97,6 +99,9 @@ var requestLoop = () => {
                     allData = []
                     console.log("ADDED 800 Datas to the DB")
                     //we were thinking about walking this app right here
+
+
+
                   }
                 } catch (err) {
                   //end of the cateogry nextPage.

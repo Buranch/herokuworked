@@ -13,7 +13,7 @@ function createExpressApp(db){
         next();
     });
     console.log("api");
-    // app.use(fetch);
+    app.use(fetch);
     return app;
 }
 
