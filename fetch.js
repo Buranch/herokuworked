@@ -1,6 +1,7 @@
 const http = require('http');
-const API_KEY = "rfpemd28x2vpds2t2ju52uyx";
-
+const API_KEY = "nfqjq9x4ab2ff6r3e35hezac";
+// nfqjq9x4ab2ff6r3e35hezac
+// const API_KEY = "p83jh8v8n6nc2bj3v625nqbb"//brand new
 // const API_KEY = "2aqapxyrrj6mfv4ptecp6vqd"; //Buranch
 var categories = require('./categories/walmart_categories_requested');
 var categoriesArray = require('./categories/walmart_categories_requested');
@@ -12,6 +13,9 @@ var WalmartCategoriesRequested = require('./models/walmartCategoriesRequested');
 console.log('fetch.js');
 categories = JSON.parse(JSON.stringify(categories[0]));
 console.log(categories, "/n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+
+var newURL = `/v1/paginated/items?category=976759_1071964_976779&maxId=996770109&apiKey=${API_KEY}&format=json`
+var resume = true;
 
 const express = require('express');
 const router = express.Router();
@@ -50,6 +54,11 @@ var requestLoop = () => {
   var url = `v1/paginated/items?category=${categoryId}&apiKey=${API_KEY}&format=json`
   var arr = [BASE_URL + url];
   console.log('url ', arr[0]);
+
+  if(resume){
+    arr[0] = BASE_URL + newURL;
+    console.log('new url  ', arr[0]);
+  }
 
   var clearId = setInterval(function () {
     if (arr.length != 0) {
