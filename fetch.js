@@ -193,7 +193,6 @@ const addWalmartProducts = (id, data, createWalmertRequested) => {
           dateAdded: Date.now()
         })
       }
-
     });
 
   });
