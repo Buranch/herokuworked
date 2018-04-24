@@ -1,8 +1,8 @@
 const express = require('express');
 var mongoose = require('mongoose');
-// const fetch = require('./fetch');
+const fetch = require('./fetch');
 
-const a = require('./upc');
+// const a = require('./upc');
 
 function createExpressApp(db){
     const app = express();
