@@ -207,8 +207,6 @@ const addWalmartProducts = (id, data, createWalmertRequested) => {
 
       console.log(err.message);
     });
-
-
   ProductsMissingUPC.insertMany(missingArray)
     .then(function () {
       console.log('total missing items: ', missingArray.length);
