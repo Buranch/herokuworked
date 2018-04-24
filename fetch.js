@@ -197,7 +197,7 @@ const addWalmartProducts = (id, data, createWalmertRequested) => {
     });
 
   });
-  Product.insertMany(productArray)
+  Product.insertMany(productArray, {ordered: false})
     .then(function () {
       console.log('total items: ', counter);
 
