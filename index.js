@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 // const createApp = require('./create-express-app');
 var port = process.env.PORT || 3000;
 var Product = require('./models/product');
-
 var dbFeeder = require('./categories/dbFeeder');
 //==============================================================DB connection++++++++++++++++++++++++++++++++++++++++++++++++++=
 // DB_CONN = 'mongodb://mbelachew:root@ds119700-a0.mlab.com:19700,ds119700-a1.mlab.com:19700/rodmisc?replicaSet=rs-ds119700';
