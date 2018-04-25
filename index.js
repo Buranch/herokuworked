@@ -19,6 +19,7 @@ mongoose.connect(DB_CONN, (err, result) => {
         mongoose.Promise = global.Promise;
         var db = mongoose.connection;
 
+        // dbFeeder.add();
         dbFeeder.fetch();
         // console.log('num ', num);
         /*

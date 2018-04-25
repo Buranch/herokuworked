@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 let schema = new Schema({
 
     categoryName: {type: String, required: true},
-    categoryId: {type: String, required: true, unique:true},
+    categoryId: {type: String, required: true},
     productDataRetrieved: {type: Boolean, required: true, default: false},
     productDataRetrievedDate: {type: Date},
     productsInserted: {type: Boolean,  required: true, default: false},
@@ -25,7 +25,11 @@ var WalmartCategoriesRequested =  module.exports = mongoose.model('WalmartCatego
 module.exports.insert = (doc, callback) =>{
     console.log('onWalmert ');
     console.log(doc);
-    var newd = WalmartCategoriesRequested(doc);
+    var newd = new WalmartCategoriesRequested({
+
+    });
+
     newd.save(callback);
+    // WalmartCategoriesRequested.create(doc,callback)
 }
 
