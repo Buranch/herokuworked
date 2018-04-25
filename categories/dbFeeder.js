@@ -74,6 +74,7 @@ module.exports.fetch = () => {
                 // console.log('got the cateogry ', cate);
                 return false;
             }
+            
             return true;
         });
         // console.log(map_path_id[id]);//path
