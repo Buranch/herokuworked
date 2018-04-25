@@ -5,6 +5,7 @@ var ori = [];
 var wanna = require('./wannaarray.json');
 var Product = require('./../models/product');
 var WalmartCategoriesRequested = require('./../models/walmartCategoriesRequested');
+var MissingUPC = require('./../models/missingUPC');
 // aazSIOoFihlimMzyBH77LkBhuJg1o-uX
 //key->value pair for categoryID and categoryPath
 var map_path_id = [];
@@ -54,25 +55,29 @@ module.exports.fetch = () => {
         //count the item 
         Product.count({
             "walmartCategoryPath": map_path_id[id]
-        }, (err, count) => {
-
-            if(!err){
-            console.log(map_path_id[id], ' ', count);
-            WalmartCategoriesRequested.insert({
-                categoryName: categoryName,
-                categoryId: id,
-                productDataRetrieved: true,
-                productDataRetrievedDate: Date.now(),
-                productsInserted: true,
-                numPages: Math.floor(count/100), //divide it by 100
-                numItems: count, //response Item number;
-                hasError: false
-            }, function (err, category) {
-                if (err) return err;
-                console.log('complete creating walmart');
-                // res.end();
+        }, (err1, count1) => {
+            MissingUPC.count({
+                "walmartCategoryPath": map_path_id[id]                
+            }, (err2, count2)=>{
+                // console.log('on missing');
+                if (!err1 && !err2) {
+                    console.log(map_path_id[id], ' ', count1+count2);
+                    WalmartCategoriesRequested.insert({
+                        categoryName: categoryName,
+                        categoryId: id,
+                        productDataRetrieved: true,
+                        productDataRetrievedDate: Date.now(),
+                        productsInserted: true,
+                        numPages: Math.ceil(count1+count2 / 100), //divide it by 100
+                        numItems: count1+count2, //response Item number;
+                        hasError: false
+                    }, function (err, category) {
+                        if (err) return err;
+                        // console.log('complete creating walmart');
+                        // res.end();
                     });
-            }
+                }
+            })
         })
 
     })
